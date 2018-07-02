@@ -63,25 +63,25 @@ public class FloodingIndicator {
 				.map((KeyValueMapper<String, HygonDataPoint, KeyValue<String, OutputDataPoint>>) (key, value) -> {
 					KeyValue<String, OutputDataPoint> result = null;
 
-                    int score = 0;
+                    double score = 0.0;
                     // score = 10 * (element.getMhw() / element.getMeasurement()); 
-                    // score = (int) (100 * ((element.getMhw() / element.getMeasurement()) - 1));
-                    score = (int) (((value.getMeasurement() - value.getMhw())));
+                    // score = (int) (100 * ((value.getMhw() / value.getMeasurement()) - 1));
+                    // score = (int) (((value.getMeasurement() - value.getMhw())));
 
+                    double currentMeas = value.getMeasurement();
                     // // flooding indicators
-                    // element.getMnw();
-                    // element.getMhw();
-                    // element.getAverage();
-                    // element.getLevel1();
-                    // element.getLevel2();
-                    // element.getLevel3();
-
-                    if (score < 0) {
-                        score = 0;
-                    }
-                    if (score > 100) {
-                        score = 100;
-                    }
+                    double mnw = value.getMnw();
+                    double mhw = value.getMhw();
+                    double avg = value.getAverage();
+                    //double lvl1 = value.getLevel1();
+                    //double lvl2 = value.getLevel2();
+                    //double lvl3 = value.getLevel3();
+                    
+                    ScoreHygon scoreHydro = new ScoreHygon();
+                    
+                    scoreHydro.initScore(mhw, avg, mnw);
+                    
+                    score = scoreHydro.score(currentMeas);
 
                     OutputDataPoint opHygon = new OutputDataPoint();
                     opHygon.setLat(value.getLat());
