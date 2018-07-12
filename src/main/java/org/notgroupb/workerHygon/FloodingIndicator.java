@@ -44,7 +44,7 @@ public class FloodingIndicator {
 					KeyValue<String, OutputDataPoint> result = null;
 
                     double score = 0.0;
-                    // score = 10 * (element.getMhw() / element.getMeasurement()); 
+                    // score = 10 * (element.getMhw() / element.getMeasurement());
                     // score = (int) (100 * ((value.getMhw() / value.getMeasurement()) - 1));
                     // score = (int) (((value.getMeasurement() - value.getMhw())));
 
@@ -72,7 +72,7 @@ public class FloodingIndicator {
 					return result;
                 });
         
-        outputStream.to("HygonOutput",
+        outputStream.to("OutputEvents",
 				Produced.with(
 						Serdes.String(),
 						Serdes.serdeFrom(new DataPointSerializer<OutputDataPoint>(), new OutputDataPointDeserializer()))
