@@ -3,7 +3,7 @@
   <groupId>org.notgroupb</groupId>
   <artifactId>workerHygon</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-      <packaging>jar</packaging>
+  <packaging>jar</packaging>
 
     <name>Worker of Hygon data</name>
 
@@ -13,43 +13,12 @@
 	
 	<description>Indicates flooding for Hygon Data</description>
 
-<!-- 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.0.BUILD-SNAPSHOT</version>
-		<relativePath />
-	</parent>
- -->	
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kafka.version>1.1.0</kafka.version>
         <slf4j.version>1.7.7</slf4j.version>
         <log4j.version>1.2.17</log4j.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>apache.snapshots</id>
-            <name>Apache Development Snapshot Repository</name>
-            <url>https://repository.apache.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-	    <repository>
-	        <id>dataPreformatter-mvn-repo</id>
-	        <url>https://raw.github.com/CopernicusEOI2018studyproject/dataPreformatter/mvn-repo/</url>
-	        <snapshots>
-	            <enabled>true</enabled>
-	            <updatePolicy>always</updatePolicy>
-	        </snapshots>
-	    </repository>
-    </repositories>
 
     <!--
 		Execute "mvn clean package -Pbuild-jar"
@@ -130,11 +99,11 @@
 
     <dependencies>
         <!-- Apache Kafka dependencies -->
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-streams</artifactId>
-            <version>${kafka.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka-streams</artifactId>
+			<version>1.1.0</version>
+		</dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-jdk14</artifactId>
@@ -151,10 +120,10 @@
             <version>20090211</version>
         </dependency>
         <!-- notgroupb dependencies -->
-        <dependency>
-            <groupId>org.notgroupb</groupId>
-            <artifactId>dataFormatter</artifactId>
-            <version>1.0.0</version>
-        </dependency>
+		<dependency>
+			<groupId>org.notgroupb</groupId>
+			<artifactId>dataFormats</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
     </dependencies>
 </project>

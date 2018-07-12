@@ -1,4 +1,4 @@
-package workerHygon;
+package org.notgroupb.workerHygon;
 
 public final class ScoreHygon {
 	//MHW: means highest  water level,

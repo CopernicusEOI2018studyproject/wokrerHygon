@@ -1,20 +1,5 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one or more
- * contributor license agreements. See the NOTICE file distributed with
- * this work for additional information regarding copyright ownership.
- * The ASF licenses this file to You under the Apache License, Version 2.0
- * (the "License"); you may not use this file except in compliance with
- * the License. You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package workerHygon;
+package org.notgroupb.workerHygon;
+
 
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
@@ -25,22 +10,17 @@ import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
-// new imports
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.KeyValueMapper;
 import org.apache.kafka.streams.kstream.Produced;
-import org.notgroupb.dataPreformatter.formats.DataPointDeserializer;
-import org.notgroupb.dataPreformatter.formats.DataPointSerializer;
-import org.notgroupb.dataPreformatter.formats.HygonDataPoint;
-// import stream processing utilities
-import org.notgroupb.dataPreformatter.formats.OutputDataPoint;
+import org.notgroupb.formats.HygonDataPoint;
+import org.notgroupb.formats.OutputDataPoint;
+import org.notgroupb.formats.deserialize.OutputDataPointDeserializer;
+import org.notgroupb.formats.serialize.DataPointSerializer;
 
 
 /**
- * In this example, we implement a simple WordCount program using the high-level Streams DSL
- * that reads from a source topic "streams-plaintext-input", where the values of messages represent lines of text,
- * split each text line into words and then compute the word occurence histogram, write the continuous updated histogram
- * into a topic "streams-wordcount-output" where each record is an updated count of a single word.
+ * 
  */
 public class FloodingIndicator {
 
@@ -93,10 +73,9 @@ public class FloodingIndicator {
                 });
         
         outputStream.to("HygonOutput",
-            Produced.with(
-                Serdes.String(),
-                Serdes.serdeFrom(new DataPointSerializer<OutputDataPoint>(), new DataPointDeserializer<OutputDataPoint>())
-            )
+				Produced.with(
+						Serdes.String(),
+						Serdes.serdeFrom(new DataPointSerializer<OutputDataPoint>(), new OutputDataPointDeserializer()))
         );
 
 		// #####################################################
