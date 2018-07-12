@@ -5,6 +5,7 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.streams.Consumed;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -15,6 +16,7 @@ import org.apache.kafka.streams.kstream.KeyValueMapper;
 import org.apache.kafka.streams.kstream.Produced;
 import org.notgroupb.formats.HygonDataPoint;
 import org.notgroupb.formats.OutputDataPoint;
+import org.notgroupb.formats.deserialize.HygonDataPointDeserializer;
 import org.notgroupb.formats.deserialize.OutputDataPointDeserializer;
 import org.notgroupb.formats.serialize.DataPointSerializer;
 
@@ -36,7 +38,10 @@ public class FloodingIndicator {
 
 		// #####################################################
 		// create source
-		KStream<String, HygonDataPoint> sourceHygon = builder.stream("HygonData");
+		KStream<String, HygonDataPoint> sourceHygon = builder.stream("HygonData",
+				Consumed.with(Serdes.String(), 
+				Serdes.serdeFrom(new DataPointSerializer<HygonDataPoint>(), new HygonDataPointDeserializer()))
+		);
 
 		// parse source to distinguish between flooding and no flooding
 		KStream<String, OutputDataPoint> outputStream = sourceHygon
