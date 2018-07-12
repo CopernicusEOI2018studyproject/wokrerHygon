@@ -67,6 +67,8 @@ public class FloodingIndicator {
                     opHygon.setLat(value.getLat());
                     opHygon.setLon(value.getLon());
                     opHygon.setScore(score);
+                    opHygon.setName(value.getName());
+                    opHygon.setRecordTime(value.getRecordTime());
 
                     result = new KeyValue<>(key, opHygon);
 					return result;
