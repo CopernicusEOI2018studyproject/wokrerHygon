@@ -7,9 +7,6 @@ public final class ScoreHygon {
 	private double MHW,MW,MNW;
 	private double slopeMH,slopeLH;
 
-	public ScoreHygon() {
-		MHW=MW=MNW=0.0;
-	}
 	public void initScore(double b, double c, double d)
 	{
 		MHW = b;
