@@ -29,7 +29,7 @@ We use [Semantic Versioning](http://semver.org/) for versioning.
 
 ## Authors
 
-* **Thorben Kraft** - *Initial work* - [TeKraft](https://github.com/TeKraft)
+* **Torben Kraft** - *Initial work* - [TeKraft](https://github.com/TeKraft)
 * **Jan Speckamp** - *Small Updates* - [speckij](https://github.com/speckij)
 
 ## License
